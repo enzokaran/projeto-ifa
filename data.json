@@ -1,0 +1,259 @@
+{
+  "cidade": {
+    "nome": "Imaruí",
+    "atualizadoEm": "19/08/2026",
+    "centro": {
+      "lat": -28.3339,
+      "lng": -48.817
+    },
+    "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
+  },
+  "empresas": [
+    {
+      "id": "emp-01",
+      "nome": "Viação Sul Catarinense",
+      "cor": "#22d9c0"
+    },
+    {
+      "id": "emp-02",
+      "nome": "Transporte Imbituba Litoral",
+      "cor": "#ffb020"
+    }
+  ],
+  "linhas": [
+    {
+      "id": "linha-01",
+      "numero": "01",
+      "origem": "Imaruí",
+      "destino": "Imbituba",
+      "valor": 8.5,
+      "empresa": "emp-02",
+      "dias": {
+        "seg_sex": [
+          "06:30",
+          "08:10",
+          "12:30",
+          "17:40"
+        ],
+        "sabado": [
+          "07:00",
+          "12:00",
+          "18:00"
+        ],
+        "domingo": [
+          "09:00",
+          "17:00"
+        ]
+      },
+      "itinerario": [
+        "Imaruí — Terminal",
+        "Ponto Central",
+        "Localidade Rio Bonito",
+        "Localidade Areias",
+        "Imbituba — Centro"
+      ],
+      "veiculo": {
+        "capacidade": 34,
+        "acessibilidade": true,
+        "arCondicionado": false
+      }
+    },
+    {
+      "id": "linha-02",
+      "numero": "02",
+      "origem": "Imaruí",
+      "destino": "Centro",
+      "valor": 4.2,
+      "empresa": "emp-01",
+      "dias": {
+        "seg_sex": [
+          "06:00",
+          "07:30",
+          "09:00",
+          "11:00",
+          "13:30",
+          "16:00",
+          "18:20"
+        ],
+        "sabado": [
+          "07:30",
+          "10:00",
+          "13:00"
+        ],
+        "domingo": []
+      },
+      "itinerario": [
+        "Imaruí — Terminal",
+        "Bairro Progresso",
+        "Centro"
+      ],
+      "veiculo": {
+        "capacidade": 22,
+        "acessibilidade": true,
+        "arCondicionado": true
+      }
+    },
+    {
+      "id": "linha-03",
+      "numero": "03",
+      "origem": "Imaruí",
+      "destino": "Comunidade Santa Rita",
+      "valor": 5,
+      "empresa": "emp-01",
+      "dias": {
+        "seg_sex": [
+          "07:10",
+          "12:15",
+          "17:50"
+        ],
+        "sabado": [
+          "08:00"
+        ],
+        "domingo": []
+      },
+      "itinerario": [
+        "Imaruí — Terminal",
+        "Ponto Central",
+        "Comunidade Santa Rita"
+      ],
+      "veiculo": null
+    }
+  ],
+  "pontos": [
+    {
+      "id": "ponto-central",
+      "nome": "Ponto Central",
+      "referencia": "Em frente à praça matriz",
+      "linhas": [
+        "linha-01",
+        "linha-03"
+      ],
+      "lat": -28.3345,
+      "lng": -48.8155
+    },
+    {
+      "id": "terminal-imarui",
+      "nome": "Terminal Imaruí",
+      "referencia": "Rodoviária municipal",
+      "linhas": [
+        "linha-01",
+        "linha-02",
+        "linha-03"
+      ],
+      "lat": -28.336,
+      "lng": -48.8185
+    },
+    {
+      "id": "terminal-imbituba",
+      "nome": "Terminal Imbituba",
+      "referencia": "Centro de Imbituba",
+      "linhas": [
+        "linha-01"
+      ],
+      "lat": -28.24,
+      "lng": -48.67
+    },
+    {
+      "id": "ponto-praia",
+      "nome": "Ponto Praia do Rosa (acesso)",
+      "referencia": "Trevo de acesso à praia",
+      "linhas": [
+        "linha-01"
+      ],
+      "lat": -28.137,
+      "lng": -48.628
+    }
+  ],
+  "tarifaCategorias": [
+    {
+      "nome": "Meia-passagem",
+      "desc": "Estudantes com carteirinha válida",
+      "val": "50% do valor cheio"
+    },
+    {
+      "nome": "Gratuidade — Idosos",
+      "desc": "65 anos ou mais, mediante documento",
+      "val": "Gratuito"
+    },
+    {
+      "nome": "Gratuidade — PCD",
+      "desc": "Pessoas com deficiência",
+      "val": "Gratuito"
+    },
+    {
+      "nome": "Passagem inteira",
+      "desc": "Demais passageiros",
+      "val": "Valor cheio"
+    }
+  ],
+  "formasPagamento": [
+    "Dinheiro",
+    "Cartão de transporte",
+    "Pix"
+  ],
+  "avisos": [
+    {
+      "nivel": "ok",
+      "titulo": "Operação normal",
+      "texto": "Todas as linhas operam conforme os horários cadastrados nesta plataforma.",
+      "data": "19/08/2026"
+    },
+    {
+      "nivel": "warn",
+      "titulo": "Alteração de itinerário — Linha 01",
+      "texto": "Nesta sexta-feira a Linha 01 desviará pela Rua das Palmeiras devido a obras na via principal.",
+      "data": "18/08/2026"
+    },
+    {
+      "nivel": "bad",
+      "titulo": "Interrupção — Linha 03",
+      "texto": "A Linha 03 está temporariamente indisponível aos domingos até segunda ordem.",
+      "data": "12/08/2026"
+    }
+  ],
+  "destinosVisitante": [
+    {
+      "cat": "Centro",
+      "icon": "🏙️",
+      "linhas": [
+        "linha-02"
+      ]
+    },
+    {
+      "cat": "Saúde",
+      "icon": "🏥",
+      "linhas": [
+        "linha-02"
+      ]
+    },
+    {
+      "cat": "Educação",
+      "icon": "🏫",
+      "linhas": [
+        "linha-02",
+        "linha-03"
+      ]
+    },
+    {
+      "cat": "Serviços públicos",
+      "icon": "🏛️",
+      "linhas": [
+        "linha-02"
+      ]
+    },
+    {
+      "cat": "Turismo",
+      "icon": "🏖️",
+      "linhas": [
+        "linha-01"
+      ]
+    },
+    {
+      "cat": "Comércio",
+      "icon": "🛒",
+      "linhas": [
+        "linha-02"
+      ]
+    }
+  ]
+}
