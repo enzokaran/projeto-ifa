@@ -56,7 +56,8 @@
         "capacidade": 34,
         "acessibilidade": true,
         "arCondicionado": false
-      }
+      },
+      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
     },
     {
       "id": "linha-02",
@@ -91,7 +92,8 @@
         "capacidade": 22,
         "acessibilidade": true,
         "arCondicionado": true
-      }
+      },
+      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
     },
     {
       "id": "linha-03",
@@ -116,7 +118,8 @@
         "Ponto Central",
         "Comunidade Santa Rita"
       ],
-      "veiculo": null
+      "veiculo": null,
+      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
     }
   ],
   "pontos": [

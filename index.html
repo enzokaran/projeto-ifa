@@ -433,7 +433,6 @@ footer{border-top:1px solid var(--line); padding:40px 0 24px; margin-top:20px;}
       Planejar viagem
     </a>
   </div>
-  <div class="demo-banner">MODELO REUTILIZÁVEL — dados de demonstração de Imaruí → Imbituba, prontos para serem substituídos pelos dados reais de qualquer cidade</div>
 </header>
 
 <main id="app"></main>
@@ -580,6 +579,24 @@ function cidadeMapSection(){
       ${mockMap(DATA.pontos)}
     </div>
     <div class="map-note">${svgIcon('empty')}<span>Mapa ilustrativo. Para exibir o mapa real do Google My Maps, cole o link de incorporação no campo <code>cidade.mapaEmbedUrl</code> do arquivo data.json.</span></div>`;
+}
+
+// Mapa individual de cada linha. Cada linha pode ter seu próprio link do Google My Maps
+// no campo "mapaEmbedUrl" (dentro do objeto da linha, em data.json). Enquanto esse campo
+// não for preenchido, usa o mesmo mapa geral da cidade (cidade.mapaEmbedUrl) como padrão.
+function linhaMapSection(l){
+  const embedUrl = l.mapaEmbedUrl || DATA.cidade.mapaEmbedUrl;
+  if(embedUrl){
+    return `
+    <div class="card reveal" style="padding:0; overflow:hidden;">
+      <iframe src="${embedUrl}" width="100%" height="360" style="border:0; display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa da linha ${l.numero}"></iframe>
+    </div>`;
+  }
+  return `
+    <div class="card reveal" style="padding:16px;">
+      ${mockMap(DATA.pontos.filter(p=>p.linhas.includes(l.id)))}
+    </div>
+    <div class="map-note">${svgIcon('empty')}<span>Mapa ilustrativo. Para exibir o mapa real desta linha, cole o link de incorporação do Google My Maps no campo <code>mapaEmbedUrl</code> da linha ${l.numero} em data.json.</span></div>`;
 }
 
 /* ============================================================
@@ -946,7 +963,7 @@ function viewLinhaDetail(id){
             </div>`).join("")}
         </div>
         <h3 class="mt-32" style="margin-bottom:14px;">Mapa</h3>
-        ${mockMap(DATA.pontos.filter(p=>p.linhas.includes(l.id)))}
+        ${linhaMapSection(l)}
       </div>
     </div>
 
