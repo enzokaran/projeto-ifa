@@ -133,12 +133,20 @@ p{color:var(--text-dim); line-height:1.6; font-size:1rem;}
 .lede{font-size:1.08rem; color:var(--text-dim); max-width:46ch;}
 
 /* ---------- hero ---------- */
-.hero{position:relative; padding:44px 0 20px;}
-.hero-tag{display:inline-flex; align-items:center; gap:8px; background:var(--surface-2); border:1px solid var(--line); padding:6px 14px; border-radius:999px; font-size:.78rem; color:var(--text-dim); margin-bottom:22px;}
+.hero{
+  position:relative; padding:64px 0 40px; overflow:hidden;
+  background-image:
+    linear-gradient(180deg, rgba(6,14,25,.55) 0%, rgba(7,16,28,.72) 45%, var(--bg) 100%),
+    url('hero-imarui.jpg');
+  background-size:cover;
+  background-position:center 32%;
+  background-repeat:no-repeat;
+}
+.hero-tag{display:inline-flex; align-items:center; gap:8px; background:rgba(18,37,64,.72); backdrop-filter:blur(6px); border:1px solid var(--line); padding:6px 14px; border-radius:999px; font-size:.78rem; color:var(--text-dim); margin-bottom:22px;}
 .hero-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(255,255,255,0.20);}
-.hero h1{margin-bottom:14px;}
+.hero h1{margin-bottom:14px; text-shadow:0 4px 24px rgba(0,0,0,.45);}
 .hero h1 em{font-style:normal; color:var(--amber);}
-.hero .lede{margin-bottom:30px;}
+.hero .lede{margin-bottom:30px; text-shadow:0 2px 12px rgba(0,0,0,.4);}
 
 /* ---------- trip planner ---------- */
 .planner{
@@ -225,6 +233,30 @@ p{color:var(--text-dim); line-height:1.6; font-size:1rem;}
 .grid-3{grid-template-columns:1fr;}
 @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr;} .grid-3{grid-template-columns:repeat(3,1fr);}}
 @media(min-width:1040px){.hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:start;}}
+
+/* ---------- mobile refinements ---------- */
+@media(max-width:640px){
+  .wrap{padding:0 16px;}
+  .hero{padding:40px 0 28px; background-position:center 40%;}
+  .hero-tag{font-size:.72rem; padding:5px 12px; margin-bottom:16px;}
+  .hero h1{font-size:clamp(2.1rem,10vw,2.8rem);}
+  .hero .lede{font-size:.96rem; margin-bottom:22px;}
+  .section{padding:40px 0;}
+  .planner{padding:16px;}
+  .planner-field{padding:12px 14px;}
+  .board-head{padding:16px 16px 4px;}
+  .flap-row{grid-template-columns:62px 1fr auto; gap:10px; padding:10px 6px;}
+  .flap-time{font-size:1.02rem; padding:5px 3px;}
+  .flap-route .dest{font-size:.86rem;}
+  .flap-eta{font-size:.68rem;}
+  .card{padding:16px;}
+  h2{font-size:clamp(1.6rem,7vw,2.1rem);}
+  .sec-head{flex-wrap:wrap; gap:10px;}
+}
+@media(max-width:380px){
+  .hero h1{font-size:1.9rem;}
+  .flap-row{grid-template-columns:56px 1fr auto;}
+}
 
 .card{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
