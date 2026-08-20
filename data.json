@@ -6,7 +6,7 @@
       "lat": -28.3339,
       "lng": -48.817
     },
-    "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
+    "mapaEmbedUrl": "<iframe src=\"https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>"
   },
   "empresas": [
     {
@@ -57,7 +57,7 @@
         "acessibilidade": true,
         "arCondicionado": false
       },
-      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
+      "mapaEmbedUrl": "<iframe src=\"https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>"
     },
     {
       "id": "linha-02",
@@ -93,7 +93,7 @@
         "acessibilidade": true,
         "arCondicionado": true
       },
-      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
+      "mapaEmbedUrl": "<iframe src=\"https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>"
     },
     {
       "id": "linha-03",
@@ -119,7 +119,7 @@
         "Comunidade Santa Rita"
       ],
       "veiculo": null,
-      "mapaEmbedUrl": "https://www.google.com/maps/d/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ll=-28.23957734086096,-48.77950544999999&z=12"
+      "mapaEmbedUrl": "<iframe src=\"https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F\" width=\"640\" height=\"480\"></iframe>"
     }
   ],
   "pontos": [
