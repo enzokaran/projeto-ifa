@@ -88,6 +88,13 @@ button{font-family:inherit; cursor:pointer; border:none; background:none; color:
   .nav-links{display:flex;}
   .btn-plan{display:inline-flex;}
 }
+@media(min-width:900px) and (max-width:1120px){
+  .nav-links{gap:16px;}
+  .nav-links a{font-size:.84rem;}
+  .brand{font-size:1.4rem; gap:8px;}
+  .brand small{font-size:.56rem;}
+  .btn-plan{padding:10px 14px; font-size:.82rem;}
+}
 
 /* demo banner */
 .demo-banner{
@@ -341,6 +348,13 @@ p{color:var(--text-dim); line-height:1.6; font-size:1rem;}
 .fare-table tr:last-child td{border-bottom:none;}
 .fare-table .val{font-family:var(--font-mono); font-weight:700; color:var(--amber); text-align:right;}
 .fare-table{background:var(--surface); border:1px solid var(--line);}
+.fare-cat-row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--line);}
+.fare-cat-info{min-width:0; flex:1 1 auto;}
+.fare-cat-val{font-family:var(--font-mono); color:var(--teal); white-space:nowrap; flex-shrink:0;}
+@media(max-width:480px){
+  .fare-cat-row{flex-wrap:wrap; align-items:flex-start; gap:2px 12px;}
+  .fare-cat-info{flex:1 1 100%;}
+}
 
 /* alerts */
 .alert{display:flex; gap:14px; padding:16px 18px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--surface);}
@@ -1109,9 +1123,9 @@ function viewTarifas(){
       ${(DATA.tarifaCategorias||[]).length ? `
         <div class="grid" style="gap:10px;">
           ${DATA.tarifaCategorias.map(c=>`
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--line);">
-              <div><strong>${c.nome}</strong><p style="margin-top:2px;">${c.desc}</p></div>
-              <span style="font-family:var(--font-mono); color:var(--teal); white-space:nowrap;">${c.val}</span>
+            <div class="fare-cat-row">
+              <div class="fare-cat-info"><strong>${c.nome}</strong><p style="margin-top:2px;">${c.desc}</p></div>
+              <span class="fare-cat-val">${c.val}</span>
             </div>`).join("")}
         </div>
       ` : `<p>Informação não disponível.</p>`}
