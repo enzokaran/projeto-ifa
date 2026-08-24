@@ -62,36 +62,32 @@
     {
       "id": "linha-02",
       "numero": "02",
-      "origem": "Imaruí",
+      "origem": "Cangueri de Fora",
       "destino": "Centro",
-      "valor": 4.2,
-      "empresa": "emp-01",
+      "valor": 8,
+      "empresa": "Imatur",
       "dias": {
         "seg_sex": [
-          "06:00",
-          "07:30",
-          "09:00",
-          "11:00",
-          "13:30",
-          "16:00",
-          "18:20"
-        ],
-        "sabado": [
-          "07:30",
+          "6:50",
           "10:00",
-          "13:00"
+          "13:00",
+          "15:20",
+          "17:30",
         ],
+        "sabado": [],
         "domingo": []
       },
       "itinerario": [
-        "Imaruí — Terminal",
-        "Bairro Progresso",
-        "Centro"
+        "Cangueri-ponto de saída ",
+        "Praia Vermelha",
+        "Cangueri"
+        "Figueira Grande",
+        "Ribeirão",
       ],
       "veiculo": {
-        "capacidade": 22,
+        "capacidade": 40,
         "acessibilidade": true,
-        "arCondicionado": true
+        "arCondicionado": false
       },
       "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F"
     },
