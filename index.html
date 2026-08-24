@@ -578,7 +578,15 @@ footer{border-top:1px solid var(--line); padding:40px 0 24px; margin-top:20px;}
    1. SISTEMA DE DADOS — carregado a partir de data.json
    ============================================================ */
 let DATA = null;
-const DIA_LABEL = { seg_sex:"Segunda a sexta", sabado:"Sábado", domingo:"Domingo" };
+const DIA_LABEL = { seg_sex:"Segunda a sexta", sabado:"Sábado", domingo:"Domingo", seg_qui:"Segunda e quinta" };
+
+function diasResumoLabel(l){
+  const chaves = Object.keys(l.dias).filter(k => (l.dias[k]||[]).length);
+  if(!chaves.length) return "Consulte horários";
+  if(chaves.length === 1) return DIA_LABEL[chaves[0]] || "Consulte horários";
+  if(chaves.includes("seg_sex") && chaves.includes("sabado") && chaves.includes("domingo")) return "Todos os dias";
+  return chaves.map(k => DIA_LABEL[k] || k).join(" e ");
+}
 
 async function loadData(){
   const res = await fetch("./data.json", { cache: "no-store" });
@@ -1006,7 +1014,7 @@ function viewLinhaDetail(id){
       <div class="info-item"><div class="label">Origem</div><div class="value">${l.origem}</div></div>
       <div class="info-item"><div class="label">Destino</div><div class="value">${l.destino}</div></div>
       <div class="info-item"><div class="label">Valor</div><div class="value accent">${fmtMoeda(l.valor)}</div></div>
-      <div class="info-item"><div class="label">Dias</div><div class="value">${l.dias.seg_sex.length?"Todos os dias":"Consulte horários"}</div></div>
+      <div class="info-item"><div class="label">Dias</div><div class="value">${diasResumoLabel(l)}</div></div>
     </div>
     <button class="fav-btn mt-24 ${isFav(favId)?'on':''}" id="favBtn" data-fav="${favId}">
       ${svgIcon('star')} ${isFav(favId)?'Nos favoritos':'Salvar linha'}

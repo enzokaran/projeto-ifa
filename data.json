@@ -24,33 +24,22 @@
     {
       "id": "linha-01",
       "numero": "01",
-      "origem": "Imaruí",
-      "destino": "Imbituba",
+      "origem": "Rio D'Una",
+      "destino": "Imaruí",
       "valor": 8.5,
       "empresa": "emp-02",
       "dias": {
-        "seg_sex": [
-          "06:30",
-          "08:10",
-          "12:30",
-          "17:40"
-        ],
-        "sabado": [
+        "seg_sex": [],
+        "seg_qui": [
           "07:00",
-          "12:00",
-          "18:00"
+          "11:50"
         ],
-        "domingo": [
-          "09:00",
-          "17:00"
-        ]
+        "sabado": [],
+        "domingo": []
       },
       "itinerario": [
-        "Imaruí — Terminal",
-        "Ponto Central",
-        "Localidade Rio Bonito",
-        "Localidade Areias",
-        "Imbituba — Centro"
+        "Rio D'Una — ponto de saída",
+        "Imaruí - Centro"
       ],
       "veiculo": {
         "capacidade": 34,
