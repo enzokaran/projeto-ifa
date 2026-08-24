@@ -39,10 +39,18 @@
       },
       "itinerario": [
         "Rio D'Una — ponto de saída",
+        "Laranjal — saída",
+        "Águas Mornas",
+        "Vila Herculano",
+        "Forquilha",
+        "Vargem",
+        "Riacho",
+        "Passagem",
+        "Ponte",
         "Imaruí - Centro"
       ],
       "veiculo": {
-        "capacidade": 34,
+        "capacidade": 16,
         "acessibilidade": true,
         "arCondicionado": false
       },
