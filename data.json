@@ -65,24 +65,24 @@
       "origem": "Cangueri de Fora",
       "destino": "Centro",
       "valor": 8,
-      "empresa": "Imatur",
+      "empresa": "emp-01",
       "dias": {
         "seg_sex": [
-          "6:50",
+          "06:50",
           "10:00",
           "13:00",
           "15:20",
-          "17:30",
+          "17:30"
         ],
         "sabado": [],
         "domingo": []
       },
       "itinerario": [
-        "Cangueri-ponto de saída ",
+        "Cangueri — ponto de saída",
         "Praia Vermelha",
-        "Cangueri"
+        "Cangueri",
         "Figueira Grande",
-        "Ribeirão",
+        "Ribeirão"
       ],
       "veiculo": {
         "capacidade": 40,
