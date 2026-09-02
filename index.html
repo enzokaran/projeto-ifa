@@ -848,8 +848,6 @@ function viewHome(){
 }
 
 function viewCidade(){
-  const linhaDestaque = linhaById("linha-01");
-  const pontoDestaque = pontoById("ponto-praia");
   return `
   <section class="city-hero wrap">
     <span class="eyebrow">A cidade</span>
@@ -887,21 +885,6 @@ function viewCidade(){
     </div>
     ${cidadeMapSection()}
   </section>
-
-  ${linhaDestaque ? `
-  <section class="section wrap">
-    <div class="sec-head">
-      <div><span class="eyebrow">Turismo</span><h2 style="font-size:1.7rem;">Acesso à Praia do Rosa</h2></div>
-    </div>
-    <div class="feature-banner reveal">
-      <div class="fb-media"><span>🏖️</span></div>
-      <div class="fb-body">
-        <h3 style="margin-bottom:2px;">Linha ${linhaDestaque.numero} — ${linhaDestaque.origem} → ${linhaDestaque.destino}</h3>
-        <p>A Linha ${linhaDestaque.numero} liga o Terminal de Imaruí ao acesso da Praia do Rosa, passando por localidades como Rio Bonito e Areias — uma opção prática para quem vai à praia sem carro.</p>
-        <a href="#/linhas/${linhaDestaque.id}" class="card-cta" style="justify-content:flex-start; gap:10px;">Ver horários da linha ${svgIcon('arrow')}</a>
-      </div>
-    </div>
-  </section>` : ""}
 
   <section class="section wrap">
     <div class="card reveal" style="padding:32px; display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
