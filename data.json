@@ -30,7 +30,7 @@
       "id": "linha-01",
       "numero": "01",
       "origem": "Rio D'Una",
-      "destino": "Imaruí",
+      "destino": "Centro de Imaruí",
       "valor": 8.5,
       "empresa": null,
       "dias": {
@@ -65,7 +65,7 @@
       "id": "linha-02",
       "numero": "02",
       "origem": "Cangueri de Fora",
-      "destino": "Centro",
+      "destino": "Centro de Imaruí",
       "valor": 8,
       "empresa": "emp-03",
       "dias": {
