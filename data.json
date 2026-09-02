@@ -42,7 +42,7 @@
         "Imaruí - Centro"
       ],
       "veiculo": {
-        "capacidade": 34,
+        "capacidade": 16,
         "acessibilidade": true,
         "arCondicionado": false
       },
@@ -165,7 +165,7 @@
     {
       "nivel": "warn",
       "titulo": "Alteração de itinerário — Linha 01",
-      "texto": "Nesta sexta-feira a Linha 01 desviará pela Rua das Palmeiras devido a obras na via principal.",
+      "texto": "Nesta sexta-feira a Linha 01 desviará devido a obras na via principal.",
       "data": "18/08/2026"
     },
     {
