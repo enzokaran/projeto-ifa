@@ -27,7 +27,7 @@
       "origem": "Rio D'Una",
       "destino": "Imaruí",
       "valor": 8.5,
-      "empresa": "emp-02",
+      "empresa": null,
       "dias": {
         "seg_sex": [],
         "seg_qui": [
@@ -49,7 +49,7 @@
         "Centro - Imaruí"
       ],
       "veiculo": {
-        "capacidade": 34,
+        "capacidade": 16,
         "acessibilidade": true,
         "arCondicionado": false
       },
@@ -81,6 +81,10 @@
         "Ribeirão",
         "Centro - Imaruí"
       ],
+      "veiculo": {
+        "capacidade": 40,
+        "arCondicionado": false
+      },
       "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1Xg_StB64VWqp1Fj587Okuf0u-TcCeBQ&ehbc=2E312F"
     }
   ],
