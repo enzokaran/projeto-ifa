@@ -38,11 +38,18 @@
         "domingo": []
       },
       "itinerario": [
-        "Rio D'Una — ponto de saída",
-        "Imaruí - Centro"
+        "Laranjal — ponto de saída",
+        "Águas Mornas",
+        "Vila Herculano",
+        "Forquilha",
+        "Vargem",
+        "Riacho",
+        "Passagem",
+        "Ponte",
+        "Centro - Imaruí"
       ],
       "veiculo": {
-        "capacidade": 16,
+        "capacidade": 34,
         "acessibilidade": true,
         "arCondicionado": false
       },
