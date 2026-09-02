@@ -636,7 +636,8 @@ function svgIcon(name){
     back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>',
     star:'<svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2l3.1 6.6 7.2.9-5.3 5 1.4 7.2L12 18l-6.4 3.7L7 14.5l-5.3-5 7.2-.9L12 2z"/></svg>',
     empty:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 15s1.5-2 3-2 3 2 3 2M9 9h.01M15 9h.01"/></svg>',
-    loc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>'
+    loc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>',
+    bus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M3 12h18M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.2" fill="currentColor" stroke="none"/><circle cx="16.5" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>'
   };
   return icons[name] || "";
 }
@@ -995,6 +996,7 @@ function viewLinhaDetail(id){
         <h3 class="mt-32" style="margin-bottom:16px;">Veículo</h3>
         ${l.veiculo ? `
           <div class="line-meta" style="gap:16px 26px;">
+            ${l.veiculo.tipo ? `<span>${svgIcon('bus')} Tipo: ${l.veiculo.tipo}</span>` : ""}
             <span>${svgIcon('tag')} Capacidade: ${l.veiculo.capacidade} passageiros</span>
             <span>${svgIcon('calendar')} Acessibilidade: ${l.veiculo.acessibilidade?'Sim':'Não'}</span>
             <span>${svgIcon('clock')} Ar-condicionado: ${l.veiculo.arCondicionado?'Sim':'Não'}</span>

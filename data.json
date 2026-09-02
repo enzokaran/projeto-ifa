@@ -18,6 +18,11 @@
       "id": "emp-02",
       "nome": "Transporte Imbituba Litoral",
       "cor": "#ffb020"
+    },
+    {
+      "id": "emp-03",
+      "nome": "Imatur",
+      "cor": "#4d8dff"
     }
   ],
   "linhas": [
@@ -62,7 +67,7 @@
       "origem": "Cangueri de Fora",
       "destino": "Centro",
       "valor": 8,
-      "empresa": "Imatur",
+      "empresa": "emp-03",
       "dias": {
         "seg_sex": [
           "06:50",
