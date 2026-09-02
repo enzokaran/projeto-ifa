@@ -74,12 +74,7 @@
         "Ribeirão",
         "Centro - Imaruí"
       ],
-      "veiculo": {
-        "capacidade": 40,
-        "acessibilidade": true,
-        "arCondicionado": false
-      },
-      "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1nwdFQvWzCVmoPsaAFD9jdPqr5fF5ceI&ehbc=2E312F"
+      "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1Xg_StB64VWqp1Fj587Okuf0u-TcCeBQ&ehbc=2E312F"
     },
     {
       "id": "linha-03",
@@ -113,7 +108,7 @@
       "id": "proposta-01",
       "nome": "Exemplo de proposta de linha",
       "descricao": "Preencha aqui o porquê dessa linha é necessária: quem seria atendido, qual problema resolve, e qualquer contexto relevante para avaliação. Não é preciso repetir todos os campos operacionais de uma linha já em funcionamento — o foco aqui é a justificativa.",
-      "mapaEmbedUrl": ""
+      "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1Ld39e6goQSHRYQB94ZM3Z7ae5H6_7Uc&ehbc=2E312F"
     }
   ],
   "pontos": [
