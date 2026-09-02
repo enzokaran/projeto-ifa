@@ -49,8 +49,9 @@
         "Centro - Imaruí"
       ],
       "veiculo": {
+        "tipo": "Van",
         "capacidade": 16,
-        "acessibilidade": true,
+        "acessibilidade": false,
         "arCondicionado": false
       },
       "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1VoXXJaQCIuGzjeK9TEJ6LdhWEJy1r-U&ehbc=2E312F"
@@ -82,7 +83,9 @@
         "Centro - Imaruí"
       ],
       "veiculo": {
+        "tipo": "Ônibus",
         "capacidade": 40,
+        "acessibilidade": false,
         "arCondicionado": false
       },
       "mapaEmbedUrl": "https://www.google.com/maps/d/u/0/embed?mid=1Xg_StB64VWqp1Fj587Okuf0u-TcCeBQ&ehbc=2E312F"
