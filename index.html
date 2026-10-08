@@ -1157,9 +1157,14 @@ function viewHorarios(){
 }
 
 function renderHorariosResult(day){
-  const isWeekend = day==="Sábado" || day==="Domingo";
-  const key = day==="Sábado" ? "sabado" : (day==="Domingo" ? "domingo" : "seg_sex");
-  const all = DATA.linhas.flatMap(l => l.dias[key].map(h=>({hora:h,linha:l}))).sort((a,b)=>a.hora.localeCompare(b.hora));
+  // número do dia da semana (0=domingo ... 6=sábado) do chip escolhido
+  const hojeNum = new Date().getDay();
+  const numDia = { "Hoje":hojeNum, "Amanhã":(hojeNum+1)%7, "Domingo":0, "Segunda":1, "Terça":2, "Quarta":3, "Quinta":4, "Sexta":5, "Sábado":6 }[day];
+  const chaves = DIA_CHAVES[numDia] || [];
+  const ehHoje = numDia === hojeNum && day !== "Amanhã";
+  const all = DATA.linhas
+    .flatMap(l => chaves.flatMap(k => (l.dias[k] || []).map(h=>({hora:h,linha:l}))))
+    .sort((a,b)=>a.hora.localeCompare(b.hora));
   const el = $("#horariosResult");
   if(!el) return;
   el.innerHTML = all.length ? `
@@ -1170,7 +1175,7 @@ function renderHorariosResult(day){
           <div class="flap-row">
             <div class="flap-time">${item.hora}</div>
             <div class="flap-route"><span class="line-tag">LINHA ${item.linha.numero}</span><span class="dest">${item.linha.origem} → ${item.linha.destino}</span></div>
-            <div class="flap-eta">${key==='seg_sex' ? etaLabel(item.hora) : ''}</div>
+            <div class="flap-eta">${ehHoje ? (minutosAte(item.hora) < 0 ? "Já saiu" : etaLabel(item.hora)) : ''}</div>
           </div>`).join("")}
       </div>
     </div>
