@@ -606,9 +606,21 @@ const app = $("#app");
 function linhaById(id){ return DATA.linhas.find(l=>l.id===id); }
 function pontoById(id){ return DATA.pontos.find(p=>p.id===id); }
 function fmtMoeda(v){ return v==null ? "Informação não disponível" : "R$ " + v.toFixed(2).replace(".",","); }
+// Quais chaves de "dias" (data.json) valem para cada dia da semana (0=domingo ... 6=sábado)
+const DIA_CHAVES = {
+  0:["domingo"],
+  1:["seg_sex","seg_qui"],
+  2:["seg_sex"],
+  3:["seg_sex"],
+  4:["seg_sex","seg_qui"],
+  5:["seg_sex"],
+  6:["sabado"]
+};
 function todosHorariosHoje(){
-  // seg-sex simplificado para demo (sempre trata como dia útil)
-  return DATA.linhas.flatMap(l => l.dias.seg_sex.map(h => ({hora:h, linha:l})));
+  const chaves = DIA_CHAVES[new Date().getDay()] || [];
+  return DATA.linhas.flatMap(l =>
+    chaves.flatMap(k => (l.dias[k] || []).map(h => ({hora:h, linha:l})))
+  );
 }
 function minutosAte(hora){
   const now = new Date();
@@ -729,28 +741,73 @@ function alertCard(a){
   </div>`;
 }
 
-function nextDeparturesBoard(){
-  const all = todosHorariosHoje().sort((a,b)=> a.hora.localeCompare(b.hora)).slice(0,4);
+let mostrarSaidasAnteriores = false;
+
+function flapRow(item, passada){
   return `
-  <div class="board reveal">
-    <div class="board-head">
-      <h3><span class="live"></span>Próximas saídas</h3>
-      <a href="#/horarios" style="font-size:.78rem; color:var(--teal); font-weight:700;">Ver tudo</a>
-    </div>
-    <div class="board-list">
-      ${all.map(item=>`
-        <div class="flap-row">
+        <div class="flap-row" data-hora="${item.hora}" ${passada?'data-passada="1" style="opacity:.5;"':''}>
           <div class="flap-time">${item.hora}</div>
           <div class="flap-route">
             <span class="line-tag">LINHA ${item.linha.numero}</span>
             <span class="dest">${item.linha.origem} → ${item.linha.destino}</span>
           </div>
-          <div class="flap-eta">${etaLabel(item.hora)}</div>
-        </div>
-      `).join("")}
+          <div class="flap-eta">${passada ? "Já saiu" : etaLabel(item.hora)}</div>
+        </div>`;
+}
+
+function nextDeparturesBoard(){
+  const todas = todosHorariosHoje().sort((a,b)=> a.hora.localeCompare(b.hora));
+  const passadas = todas.filter(i => minutosAte(i.hora) < 0);
+  const proximas = todas.filter(i => minutosAte(i.hora) >= 0).slice(0,4);
+  const sig = proximas.map(i=>i.linha.id+i.hora).join("|") + "#" + passadas.length;
+  const vazio = !todas.length
+    ? "Não há saídas programadas para hoje."
+    : "Não há mais saídas hoje.";
+  return `
+  <div class="board reveal" id="nextBoard" data-sig="${sig}">
+    <div class="board-head">
+      <h3><span class="live"></span>Próximas saídas</h3>
+      <a href="#/horarios" style="font-size:.78rem; color:var(--teal); font-weight:700;">Ver tudo</a>
     </div>
+    <div class="board-list">
+      ${mostrarSaidasAnteriores ? passadas.map(i=>flapRow(i,true)).join("") : ""}
+      ${proximas.length
+        ? proximas.map(i=>flapRow(i,false)).join("")
+        : `<p style="padding:14px 10px; font-size:.9rem;">${vazio}</p>`}
+    </div>
+    ${passadas.length ? `
+    <div style="padding:0 20px 16px;">
+      <button type="button" id="toggleAnteriores" style="font-size:.78rem; color:var(--teal); font-weight:700; text-decoration:underline; text-underline-offset:3px;">
+        ${mostrarSaidasAnteriores ? "Ocultar" : "Mostrar"} saídas anteriores (${passadas.length})
+      </button>
+    </div>` : ""}
   </div>`;
 }
+
+// Atualiza o quadro quando uma saída passa, sem recarregar a página.
+function atualizarQuadroSaidas(forcar){
+  const atual = $("#nextBoard");
+  if(!atual) return;
+  const tmp = document.createElement("div");
+  tmp.innerHTML = nextDeparturesBoard().trim();
+  const novo = tmp.firstElementChild;
+  if(forcar || novo.dataset.sig !== atual.dataset.sig){
+    novo.classList.add("in");
+    atual.replaceWith(novo);
+  }else{
+    $$(".flap-row[data-hora]:not([data-passada])", atual).forEach(r=>{
+      const eta = $(".flap-eta", r);
+      if(eta) eta.textContent = etaLabel(r.dataset.hora);
+    });
+  }
+}
+document.addEventListener("click", e=>{
+  if(e.target.closest("#toggleAnteriores")){
+    mostrarSaidasAnteriores = !mostrarSaidasAnteriores;
+    atualizarQuadroSaidas(true);
+  }
+});
+setInterval(()=>atualizarQuadroSaidas(false), 30000);
 
 // Converte lat/lng (cadastrados em data.json) em posição percentual (x,y) dentro do mapa
 // ilustrativo, usando a área coberta por todos os pontos cadastrados como referência.
