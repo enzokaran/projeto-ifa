@@ -1,6 +1,13 @@
-const CACHE_NAME = "vai-imarui-v1";
+const CACHE_NAME = "vai-imarui-v2";
 const APP_SHELL = [
-  "./mobilidade.html",
+  "./",
+  "./index.html",
+  "./css/styles.css",
+  "./js/config.js",
+  "./js/utils.js",
+  "./js/components.js",
+  "./js/views.js",
+  "./js/router.js",
   "./manifest.json",
   "./icon.svg"
 ];
@@ -22,6 +29,7 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
+  if(event.request.method !== "GET") return;
   const url = new URL(event.request.url);
 
   // dados: network-first, cai para cache se estiver offline
@@ -38,14 +46,18 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // app shell e demais recursos same-origin: cache-first
+  // app shell e demais recursos same-origin: usa o cache e atualiza em segundo plano
+  // (assim edições nos arquivos aparecem na visita seguinte, sem precisar trocar a versão do cache)
   if(url.origin === location.origin){
     event.respondWith(
-      caches.match(event.request).then(cached => cached || fetch(event.request).then(res => {
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        return res;
-      }).catch(() => cached))
+      caches.match(event.request).then(cached => {
+        const rede = fetch(event.request).then(res => {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          return res;
+        }).catch(() => cached);
+        return cached || rede;
+      })
     );
   }
 });

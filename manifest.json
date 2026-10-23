@@ -2,7 +2,7 @@
   "name": "Vai — Mobilidade de Imaruí",
   "short_name": "Vai",
   "description": "Consulte horários, rotas, pontos e tarifas do transporte de Imaruí em um só lugar.",
-  "start_url": "./mobilidade.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
