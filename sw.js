@@ -1,4 +1,4 @@
-const CACHE_NAME = "vai-imarui-v2";
+const CACHE_NAME = "vai-imarui-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,8 @@ const APP_SHELL = [
   "./js/utils.js",
   "./js/components.js",
   "./js/views.js",
+  "./js/views-imarui.js",
+  "./imarui.json",
   "./js/router.js",
   "./manifest.json",
   "./icon.svg"
@@ -33,7 +35,7 @@ self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
 
   // dados: network-first, cai para cache se estiver offline
-  if(url.pathname.endsWith("data.json")){
+  if(url.pathname.endsWith("data.json") || url.pathname.endsWith("imarui.json")){
     event.respondWith(
       fetch(event.request)
         .then(res => {

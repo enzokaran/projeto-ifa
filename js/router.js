@@ -38,15 +38,18 @@ const PAGINAS = [
     descricao:"Linhas que você salvou neste aparelho.",
     resumo:()=>{ const n = favs().filter(x=>x.startsWith("linha:")).length; return `${n} ${n===1?"linha salva":"linhas salvas"}`; } },
 
+  // ----- Seção: Conheça Imaruí (dados em imarui.json) -----
+  { rota:"/imarui", secao:"imarui", titulo:"Visão geral", view:viewImarui, sub:true, hub:true },
+  { rota:"/imarui/lugares", secao:"imarui", titulo:"Lugares", view:viewImaruiLugares, sub:true },
+  { rota:"/imarui/cultura", secao:"imarui", titulo:"História e cultura", view:viewImaruiCultura, sub:true },
+
   // ----- Seção: Sobre -----
   { rota:"/sobre", secao:"sobre", titulo:"Sobre o Vai", view:viewSobre, sub:true },
   { rota:"/cidade", secao:"sobre", titulo:"Mobilidade na cidade", view:viewCidade, sub:true },
 
   // ----- Utilitária -----
-  { rota:"/mais", secao:"inicio", titulo:"Mais", view:viewMais, menu:false }
+  { rota:"/mais", secao:"utilitaria", titulo:"Mais", view:viewMais, menu:false }
 
-  // ----- FUTURO: seção "Imaruí" (ver config.js) -----
-  // { rota:"/imarui", secao:"imarui", titulo:"Visão geral", view:viewImarui, sub:true },
 ];
 
 function paginaPorRota(rota){ return PAGINAS.find(p => p.rota === rota) || null; }
@@ -95,7 +98,20 @@ function render(){
   let pg = null, html, titulo = "";
 
   const linhaMatch = path.match(/^\/linhas\/(.+)$/);
-  if(linhaMatch){
+  const lugarMatch = path.match(/^\/imarui\/lugares\/(.+)$/);
+  const temaMatch = path.match(/^\/imarui\/cultura\/(.+)$/);
+  if(lugarMatch){
+    pg = paginaPorRota("/imarui/lugares");
+    ctx.id = decodeURIComponent(lugarMatch[1]);
+    html = viewImaruiLugarDetail(ctx);
+    const lg = IMARUI ? lugarById(ctx.id) : null;
+    titulo = lg ? lg.nome : "Lugar não encontrado";
+  }else if(temaMatch){
+    pg = paginaPorRota("/imarui/cultura");
+    ctx.id = decodeURIComponent(temaMatch[1]);
+    html = viewImaruiCultura(ctx);
+    titulo = pg.titulo;
+  }else if(linhaMatch){
     pg = paginaPorRota("/linhas");
     ctx.id = decodeURIComponent(linhaMatch[1]);
     html = viewLinhaDetail(ctx);
@@ -104,7 +120,7 @@ function render(){
   }else{
     pg = paginaPorRota(path);
     html = pg ? pg.view(ctx) : viewNaoEncontrada();
-    titulo = pg && pg.rota !== "/" ? (pg.hub ? "Transporte" : pg.titulo) : "";
+    titulo = pg && pg.rota !== "/" ? (pg.hub ? SECOES.find(s=>s.id===pg.secao).label : pg.titulo) : "";
   }
 
   const rotaAtual = pg ? pg.rota : null;
@@ -119,6 +135,7 @@ function render(){
   updateNavActive(pg);
   bindPageEvents();
   initReveal();
+  if(temaMatch) irParaTema(ctx.id);
 }
 
 function updateNavActive(pg){
@@ -129,10 +146,12 @@ function updateNavActive(pg){
     if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
   });
   const rota = pg ? pg.rota : null;
-  const atalho = BARRA_INFERIOR.some(i => i.rota !== "/mais" && i.rota === rota);
+  const doAtalho = i => i.rota !== "/mais" && (i.rota === rota || !!(i.secao && pg && i.secao === pg.secao));
+  const atalho = BARRA_INFERIOR.some(doAtalho);
   $$("#bottomNav a").forEach(a=>{
     const r = a.dataset.rota;
-    const on = r === "/mais" ? (!atalho && rota !== null) : r === rota;
+    const item = BARRA_INFERIOR.find(i => i.rota === r);
+    const on = r === "/mais" ? (!atalho && rota !== null) : doAtalho(item);
     a.classList.toggle("active", on);
     if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
   });
@@ -143,6 +162,7 @@ function irParaRotas(from, to){
 }
 
 function bindPageEvents(){
+  bindImarui();
   // planejador (início)
   const pf = $("#plannerForm");
   if(pf){
@@ -217,6 +237,7 @@ window.addEventListener("hashchange", render);
 window.addEventListener("DOMContentLoaded", async ()=>{
   try{
     await loadData();
+    await loadImarui();
     montarNavegacao();
     render();
   }catch(err){
