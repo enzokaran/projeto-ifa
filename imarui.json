@@ -56,6 +56,7 @@
       "id": "sambaquieiros",
       "titulo": "Os Sambaquieiros e os sambaquis",
       "categoria": "Povos originários",
+      "resumo": "Segundo a revista, há cerca de 8 a 10 mil anos os Sambaquieiros já viviam junto à lagoa. Deixaram os sambaquis, grandes montes de conchas que eram lugares sagrados; mais de 200 já foram encontrados em Imaruí.",
       "texto": [
         "Segundo a revista, há cerca de 8 a 10 mil anos já vivia em Imaruí um povo conhecido como Sambaquieiros. Eles moravam perto da lagoa e dela tiravam peixes, frutos do mar, como o berbigão, e plantas para comer. Também usavam fibras de palmeira para fazer cestos.",
         "Os Sambaquieiros deixaram os sambaquis, grandes montes de conchas. Por muito tempo se pensou que fossem apenas restos de comida, mas hoje se sabe que foram construídos de propósito e eram lugares sagrados, onde enterravam seus mortos e faziam rituais. A revista informa que já foram encontrados mais de 200 sambaquis em Imaruí."
@@ -66,6 +67,7 @@
       "id": "guarani-ge",
       "titulo": "Os povos Guarani e Gê",
       "categoria": "Povos originários",
+      "resumo": "Por volta de 1605, padres encontraram o povo Guarani na região, onde também viveram povos do grupo Gê. Eles deixaram palavras, costumes, lendas e um jeito de cuidar da natureza.",
       "texto": [
         "Depois dos Sambaquieiros, outros povos indígenas também viveram em Imaruí. Por volta de 1605, padres que viajavam em busca de pessoas para ensinar sua fé encontraram na região o povo Guarani. Viveram aqui, ainda, povos do grupo Gê.",
         "A revista lembra que esses povos deixaram palavras que usamos até hoje, costumes, lendas e um jeito de cuidar da natureza, e que a história deles faz parte da história de Imaruí."
@@ -78,6 +80,7 @@
       "id": "novos-povos",
       "titulo": "Pescadores de Laguna e famílias açorianas",
       "categoria": "Formação da cidade",
+      "resumo": "Muitos dos primeiros moradores vieram de Laguna, pescadores em busca de bons lugares para pescar e viver. Por volta de 1750 chegaram famílias açorianas, que plantavam principalmente mandioca e faziam farinha.",
       "texto": [
         "Antes de 1800 chegaram outros grupos à região onde hoje fica Imaruí. Muitos dos primeiros moradores vieram de Laguna: eram pescadores em busca de bons lugares para pescar e viver.",
         "Por volta de 1750 também chegaram famílias açorianas, vindas das Ilhas dos Açores, que moravam em Vila Nova (hoje parte de Imbituba) e procuravam terras maiores e mais férteis. Elas derrubavam a mata e limpavam a terra pela coivara, um jeito que os indígenas já conheciam. Plantavam várias coisas, sendo a mandioca a mais importante, da qual faziam farinha, e criavam alguns bois e cavalos."
@@ -88,6 +91,7 @@
       "id": "freguesia",
       "titulo": "De freguesia a município",
       "categoria": "Formação da cidade",
+      "resumo": "Em 1833, a igrejinha de São João se tornou a Freguesia de São João Batista do Imaruí, ainda ligada a Laguna. Com o tempo, a freguesia cresceu em terras, plantações e comércio.",
       "texto": [
         "No final dos anos 1700, o lugar onde hoje fica Imaruí funcionava como um ponto de encontro: fazendeiros vendiam seus produtos para Laguna, e tropeiros passavam trazendo carne seca das montanhas e levando peixe, siri, sal e panelas.",
         "Em 1833, a igrejinha de São João se tornou a Freguesia de São João Batista do Imaruí, ainda ligada a Laguna. Em 1836, o Rio Capivari passou a ser o limite a oeste. Com o tempo a freguesia cresceu em terras, plantações e comércio; em comunidades como Taguaraçutuba e Cangueri, surgiram as primeiras escolas no final do século XIX, e novas estradas ligaram Imaruí a São Martinho, onde moravam colonos alemães."
@@ -98,6 +102,7 @@
       "id": "barcos-cafe",
       "titulo": "Barcos, café e a criação do município",
       "categoria": "Formação da cidade",
+      "resumo": "Barcos levavam produtos a Laguna e, com a alta do café nos anos 1870, Imaruí passou a abastecer a cidade. Em 27 de agosto de 1890, nasceu oficialmente o município de Imaruí.",
       "texto": [
         "O transporte era feito principalmente por barcos, que levavam produtos para Laguna. Quando a ferrovia ganhou uma ponte sobre o canal, os mastros altos dos barcos exigiram uma ponte com vão móvel, que se abria para eles passarem.",
         "Na década de 1870, com a alta do preço do café, Imaruí se tornou um dos principais lugares que abasteciam Laguna. Para isso foi preciso muita mão de obra, e a população de escravizados cresceu bastante. Famílias de origem açoriana continuavam chegando. Em 27 de agosto de 1890, nasceu oficialmente o município de Imaruí."
@@ -108,6 +113,7 @@
       "id": "festas-religiosas",
       "titulo": "Festa do Divino e Festa do Senhor Bom Jesus dos Passos",
       "categoria": "Tradições e festas",
+      "resumo": "A Festa do Divino reúne famílias, música, procissões e partilha de alimentos. A Festa do Senhor Bom Jesus dos Passos é uma das celebrações religiosas mais importantes de Imaruí, com missas, procissões e barracas de comidas típicas.",
       "texto": [
         "A Festa do Divino Espírito Santo reúne famílias, música, procissões e partilha de alimentos.",
         "A Festa do Senhor Bom Jesus dos Passos é uma das celebrações religiosas mais importantes de Imaruí. Moradores e visitantes participam de missas, procissões e momentos de oração, em uma tradição mantida há muitas gerações. A festa também reúne a comunidade em torno da convivência, com barracas de comidas típicas e apresentações musicais."
@@ -118,6 +124,7 @@
       "id": "boi-de-mamao",
       "titulo": "Boi de Mamão",
       "categoria": "Tradições e festas",
+      "resumo": "Uma das brincadeiras folclóricas mais conhecidas de Santa Catarina: o boi aparece, morre e ressuscita, ao lado de personagens como a Bernúncia e a Maricota. O município possui grupos em atividade.",
       "texto": [
         "O Boi de Mamão é uma das brincadeiras folclóricas mais conhecidas de Santa Catarina, especialmente no litoral, onde os açorianos se estabeleceram. Na encenação, o boi aparece, morre e depois ressuscita, e outros personagens fazem parte da festa, como a Bernúncia, a Maricota e o médico.",
         "A revista registra duas explicações para o nome: a de que viria do costume de fazer a cabeça do boi com casca de mamão, e a de que seria uma versão mais leve e infantil do bumba-meu-boi. Segundo a revista, hoje é patrimônio cultural catarinense e o município possui grupos em atividade."
@@ -128,6 +135,7 @@
       "id": "dancas-acorianas",
       "titulo": "Danças açorianas: Pau de Fita e Pai do Ladrão",
       "categoria": "Tradições e festas",
+      "resumo": "No Pau de Fita, os dançarinos trançam e destrançam fitas coloridas presas a um mastro. No Pai do Ladrão, os pares dançam em roda e os homens \"roubam\" as parceiras. O município conta com o Grupo Folclórico Olhar Açoriano.",
       "texto": [
         "No Pau de Fita, um mastro enfeitado com fitas coloridas fica no centro da roda, e cada dançarino segura uma fita. Ao som da música, eles trançam e destrançam as fitas, formando desenhos. A revista conta que o mastro representa a árvore da vida e as fitas simbolizam os frutos e a fertilidade da natureza.",
         "No Pai do Ladrão, tradição trazida pelos açorianos, os pares dançam em roda e, durante a coreografia, os homens \"roubam\" as parceiras uns dos outros, o que faz parte da brincadeira. Segundo a revista, o município conta com um grupo folclórico de danças e cantares açorianos, o Grupo Folclórico Olhar Açoriano."
@@ -147,6 +155,7 @@
       "id": "pesca-artesanal",
       "titulo": "Pesca artesanal na Lagoa de Imaruí",
       "categoria": "Pesca artesanal",
+      "resumo": "Uma das tradições mais fortes de Imaruí, desde os primeiros moradores. Na Lagoa de Imaruí, homens e mulheres pescam com canoas de madeira, remos e redes; o siri e a tainha são símbolos dessa ligação com a lagoa.",
       "texto": [
         "A pesca artesanal é uma das tradições mais fortes de Imaruí e acompanha a história do município desde os primeiros moradores. Nas águas da Lagoa de Imaruí, homens e mulheres pescam com canoas de madeira, remos e redes, usando técnicas aprendidas com seus antepassados.",
         "Segundo a revista, a pesca sustenta famílias, movimenta a economia local e fortalece a cultura comunitária. O siri e a tainha são símbolos dessa ligação entre o povo e a lagoa."

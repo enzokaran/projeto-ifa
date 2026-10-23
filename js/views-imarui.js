@@ -69,7 +69,7 @@ function leiturasHtml(){
   if(!ls.length) return "";
   return `
   <div class="leituras">
-    <h3 class="leituras-title">Para saber mais (leituras indicadas pelo grupo)</h3>
+    <h3 class="leituras-title">Para saber mais</h3>
     <ul>
       ${ls.map(x => `<li><a href="${x.url}" target="_blank" rel="noopener noreferrer">${x.titulo}</a> <span class="fonte">· ${x.origem}</span></li>`).join("")}
     </ul>
@@ -84,6 +84,7 @@ function imaruiIndisponivel(){
 function viewImarui(){
   if(!IMARUI) return imaruiIndisponivel();
   const nL = (IMARUI.lugares||[]).length, nT = (IMARUI.temas||[]).length;
+  const f = (IMARUI.fontes||[])[0];
   return `
   <section class="section wrap" style="padding-top:36px;">
     <span class="eyebrow">Conheça Imaruí</span>
@@ -92,38 +93,39 @@ function viewImarui(){
     <div class="grid grid-2 mt-32">
       <a href="#/imarui/lugares" class="card hub-card reveal">
         <div class="hub-card-top"><h3 class="mb-0">Lugares</h3><span class="hub-arrow">${svgIcon('arrow')}</span></div>
-        <p>Locais para conhecer, com explicação da sua importância e botão para abrir a rota no mapa.</p>
-        <span class="hub-meta">${nL} ${nL===1?"lugar cadastrado":"lugares cadastrados"}</span>
+        <p>Locais para conhecer e como chegar até eles.</p>
+        <span class="hub-meta">${nL} ${nL===1?"lugar":"lugares"}</span>
       </a>
       <a href="#/imarui/cultura" class="card hub-card reveal">
         <div class="hub-card-top"><h3 class="mb-0">História e cultura</h3><span class="hub-arrow">${svgIcon('arrow')}</span></div>
-        <p>Dos povos originários às festas e tradições de hoje: como Imaruí foi se formando.</p>
+        <p>Dos povos originários às festas e tradições de hoje.</p>
         <span class="hub-meta">${nT} ${nT===1?"tema":"temas"}</span>
       </a>
     </div>
-    <div class="card reveal mt-32">
-      <h2 class="card-title">De onde vêm as informações</h2>
-      <p>Os textos foram elaborados a partir da cartilha <strong>${IMARUI.fontes[0].titulo}</strong>, de ${IMARUI.fontes[0].autores}, distribuída nas escolas da rede municipal. Cada tema indica a página de origem. Informações ainda não confirmadas não são apresentadas como fato.</p>
-      ${leiturasHtml()}
-    </div>
+    ${f ? `
+    <details class="mais mais-box mt-32">
+      <summary>Fontes e leituras</summary>
+      <div class="mais-body">
+        <p>Os textos foram elaborados a partir da cartilha <strong>${f.titulo}</strong>, de ${f.autores}, distribuída nas escolas da rede municipal. Cada tema indica a página de origem. Informações ainda não confirmadas não são apresentadas como fato.</p>
+        ${leiturasHtml()}
+      </div>
+    </details>` : ""}
   </section>`;
 }
 
 /* ---------- lugares ---------- */
 function lugarCard(l){
   return `
-  <a href="#/imarui/lugares/${l.id}" class="card line-card reveal">
-    <div class="line-card-top">
-      <span class="line-badge" style="background:var(--amber-dim); color:var(--amber);">${l.categoria}</span>
-    </div>
+  <a href="#/imarui/lugares/${l.id}" class="card line-card lugar-card reveal">
     <div>
-      <h3 class="mb-0" style="font-size:1.35rem;">${l.nome}</h3>
+      <span class="cat-label">${l.categoria}</span>
+      <h3 class="mb-0 lugar-nome">${l.nome}</h3>
       <p style="margin-top:8px;">${l.descricao}</p>
     </div>
     <div class="line-meta">
       <span>${svgIcon('loc')} ${destinoLugar(l) ? "Rota disponível" : "Localização a confirmar"}</span>
     </div>
-    <div class="card-cta">Ver lugar ${svgIcon('arrow')}</div>
+    <div class="card-cta">Conhecer lugar ${svgIcon('arrow')}</div>
   </a>`;
 }
 
@@ -134,7 +136,7 @@ function viewImaruiLugares(){
   <section class="section wrap" style="padding-top:36px;">
     <span class="eyebrow">Conheça Imaruí</span>
     <h1 style="margin-bottom:12px;">Lugares</h1>
-    <p class="lede" style="max-width:60ch; margin-bottom:22px;">Cada lugar traz sua importância para a cidade e um botão para abrir a rota no Google Maps. Novos lugares entram aqui à medida que forem confirmados.</p>
+    <p class="lede" style="max-width:60ch; margin-bottom:22px;">Novos lugares entram aqui à medida que forem confirmados.</p>
     ${lugares.length
       ? `<div class="grid grid-3">${lugares.map(lugarCard).join("")}</div>`
       : `<div class="empty-state">${svgIcon('empty')}<h3>Nenhum lugar cadastrado ainda.</h3></div>`}
@@ -148,6 +150,8 @@ function viewImaruiLugarDetail(ctx){
   const destino = destinoLugar(l);
   const temas = (l.temas||[]).map(temaById).filter(Boolean);
   const linhasLugar = (l.linhas||[]).map(linhaById).filter(Boolean);
+  const refs = referenciasHtml(l.referencias);
+  const apoio = refs || l.leituras;
   return `
   <section class="detail-hero wrap">
     <a href="#/imarui/lugares" class="back-link">${svgIcon('back')} Todos os lugares</a>
@@ -160,17 +164,24 @@ function viewImaruiLugarDetail(ctx){
 
   <section class="section wrap">
     <div class="grid grid-2" style="align-items:start;">
-      <div class="card reveal">
-        <h2 class="card-title">Sobre o lugar</h2>
-        <p>${l.descricao}</p>
-        <h2 class="card-title mt-32">Por que conhecer</h2>
+      <div class="card reveal detalhe-texto">
+        <p class="lede">${l.descricao}</p>
+        <h2 class="card-title">Por que conhecer</h2>
         <p>${l.importancia}</p>
-        ${l.aviso ? `<div class="aviso-box mt-24" role="note"><strong>Antes de visitar</strong><p>${l.aviso}</p></div>` : ""}
+        ${l.aviso ? `<div class="aviso-box" role="note"><strong>Antes de visitar</strong><p>${l.aviso}</p></div>` : ""}
         ${temas.length ? `
-          <h2 class="card-title mt-32">Leia também</h2>
-          <div class="time-chips">${temas.map(t=>`<a class="chip" href="#/imarui/cultura/${t.id}">${t.titulo}</a>`).join("")}</div>` : ""}
-        ${referenciasHtml(l.referencias)}
-        ${l.leituras ? leiturasHtml() : ""}
+          <div>
+            <h2 class="card-title">Leia também</h2>
+            <div class="time-chips">${temas.map(t=>`<a class="chip" href="#/imarui/cultura/${t.id}">${t.titulo}</a>`).join("")}</div>
+          </div>` : ""}
+        ${apoio ? `
+        <details class="mais">
+          <summary>Fontes e leituras</summary>
+          <div class="mais-body">
+            ${refs}
+            ${l.leituras ? leiturasHtml() : ""}
+          </div>
+        </details>` : ""}
       </div>
 
       <div style="display:flex; flex-direction:column; gap:16px;">
@@ -179,30 +190,31 @@ function viewImaruiLugarDetail(ctx){
           <h2 class="card-title">Como chegar</h2>
           ${destino ? `
           <form id="rotaForm" data-lugar="${l.id}">
-            <fieldset class="modo-fieldset">
-              <legend class="eyebrow" style="margin-bottom:10px;">Como você vai</legend>
-              <div class="chip-row" style="flex-wrap:wrap;">
-                ${MODOS_ROTA.map((m,i)=>`<label class="chip-radio"><input type="radio" name="modo" value="${m.valor}" ${i===0?"checked":""}><span class="chip">${m.rotulo}</span></label>`).join("")}
-              </div>
-            </fieldset>
-            <label class="origem-label" for="origemInput">Partir de outro lugar? <span class="fonte">(opcional)</span></label>
-            <div class="search-bar" style="margin-bottom:14px;">
-              ${svgIcon('pinFrom')}
-              <input id="origemInput" type="text" placeholder="Deixe em branco para usar a sua localização" autocomplete="off">
-            </div>
             <a id="rotaBtn" class="btn-primary" style="text-decoration:none; margin-top:0;" href="${linkRota(l, "driving")}" target="_blank" rel="noopener noreferrer">
               ${svgIcon('arrow')} Iniciar rota no Google Maps
             </a>
-            <p class="fonte" style="margin-top:12px;">O botão abre o Google Maps (aplicativo ou site) com o destino já preenchido. Se você não informar a origem, o próprio Google Maps pede permissão para usar a localização do seu aparelho. O Vai não acessa nem guarda a sua localização. O Google mostra apenas as opções de percurso que ele conhece.</p>
+            <details class="mais" style="margin-top:12px;">
+              <summary>Mudar meio de transporte ou ponto de partida</summary>
+              <div class="mais-body">
+                <fieldset class="modo-fieldset">
+                  <legend class="eyebrow" style="margin-bottom:10px;">Como você vai</legend>
+                  <div class="chip-row" style="flex-wrap:wrap;">
+                    ${MODOS_ROTA.map((m,i)=>`<label class="chip-radio"><input type="radio" name="modo" value="${m.valor}" ${i===0?"checked":""}><span class="chip">${m.rotulo}</span></label>`).join("")}
+                  </div>
+                </fieldset>
+                <label class="origem-label" for="origemInput">Partir de outro lugar? <span class="fonte">(opcional)</span></label>
+                <div class="search-bar">
+                  ${svgIcon('pinFrom')}
+                  <input id="origemInput" type="text" placeholder="Deixe em branco para usar a sua localização" autocomplete="off">
+                </div>
+              </div>
+            </details>
+            <p class="fonte" style="margin-top:12px;">Abre o Google Maps com o destino preenchido. Sem origem, o Google pede permissão para usar a localização do seu aparelho; o Vai não acessa nem guarda essa localização. O Google mostra apenas os percursos que conhece.</p>
           </form>` : `
           <p>A localização deste lugar ainda não foi confirmada. Quando o endereço ou as coordenadas forem cadastrados, o mapa e o botão de rota aparecem aqui.</p>`}
-        </div>
-        <div class="card reveal">
-          <h2 class="card-title">Transporte público</h2>
           ${linhasLugar.length
-            ? `<p>Linhas cadastradas para este lugar:</p><div class="grid" style="gap:10px; margin-top:12px;">${linhasLugar.map(lineCard).join("")}</div>`
-            : `<p>O Vai ainda não tem linha de ônibus cadastrada até este lugar. Você pode consultar as linhas e horários existentes.</p>
-               <a href="#/linhas" class="btn-secondary mt-24">Ver linhas e horários ${svgIcon('arrow')}</a>`}
+            ? `<div class="transp-lugar"><h3 class="leituras-title">Transporte público</h3><div class="grid" style="gap:10px;">${linhasLugar.map(lineCard).join("")}</div></div>`
+            : `<p class="transp-lugar fonte">Ainda não há linha de ônibus cadastrada até este lugar. <a href="#/linhas" class="link-sutil">Ver linhas e horários</a></p>`}
         </div>
       </div>
     </div>
@@ -212,14 +224,25 @@ function viewImaruiLugarDetail(ctx){
 /* ---------- história e cultura ---------- */
 function temaCard(t){
   const lugar = t.lugar ? lugarById(t.lugar) : null;
+  const completo = t.texto.map(p=>`<p>${p}</p>`).join("");
+  const refs = referenciasHtml(t.referencias);
+  const extras = `
+    ${lugar ? `<a href="#/imarui/lugares/${lugar.id}" class="card-cta link-lugar">${svgIcon('loc')} Ver ${lugar.nome} ${svgIcon('arrow')}</a>` : ""}
+    ${refs}
+    ${t.leituras ? leiturasHtml() : ""}`;
+  // Com resumo: mostra o resumo e deixa o texto completo num painel expansível.
+  // Sem resumo (texto já curto): mostra o texto direto.
+  const corpo = t.resumo ? `
+    <p>${t.resumo}</p>
+    <details class="mais">
+      <summary>Ler mais</summary>
+      <div class="mais-body">${completo}${extras}</div>
+    </details>` : `${completo}${extras}`;
   return `
   <article class="card tema-card reveal" id="tema-${t.id}" data-cat="${t.categoria}">
-    <span class="eyebrow" style="margin-bottom:0;">${t.categoria}</span>
+    <span class="cat-label">${t.categoria}</span>
     <h2 class="tema-title">${t.titulo}</h2>
-    ${t.texto.map(p=>`<p>${p}</p>`).join("")}
-    ${lugar ? `<a href="#/imarui/lugares/${lugar.id}" class="btn-secondary" style="align-self:flex-start;">${svgIcon('loc')} Ver ${lugar.nome} ${svgIcon('arrow')}</a>` : ""}
-    ${referenciasHtml(t.referencias)}
-    ${t.leituras ? leiturasHtml() : ""}
+    ${corpo}
   </article>`;
 }
 
@@ -272,5 +295,10 @@ function bindImarui(){
 // Abre /imarui/cultura/<id>: rola até o tema indicado
 function irParaTema(id){
   const el = document.getElementById("tema-" + id);
-  if(el){ el.scrollIntoView({ behavior:"auto", block:"start" }); el.classList.add("in"); }
+  if(el){
+    el.classList.add("in");
+    const d = el.querySelector("details.mais");
+    if(d) d.open = true; // quem chegou por um link quer ler o tema
+    el.scrollIntoView({ behavior:"auto", block:"start" });
+  }
 }
