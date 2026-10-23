@@ -116,7 +116,7 @@ function viewImarui(){
 /* ---------- lugares ---------- */
 function lugarCard(l){
   return `
-  <a href="#/imarui/lugares/${l.id}" class="card line-card lugar-card reveal">
+  <a href="#/imarui/lugares/${l.id}" class="card line-card lugar-card reveal" data-cat="${l.categoria}">
     <div>
       <span class="cat-label">${l.categoria}</span>
       <h3 class="mb-0 lugar-nome">${l.nome}</h3>
@@ -132,13 +132,19 @@ function lugarCard(l){
 function viewImaruiLugares(){
   if(!IMARUI) return imaruiIndisponivel();
   const lugares = IMARUI.lugares || [];
+  const cats = [...new Set(lugares.map(l => l.categoria))];
   return `
   <section class="section wrap" style="padding-top:36px;">
     <span class="eyebrow">Conheça Imaruí</span>
     <h1 style="margin-bottom:12px;">Lugares</h1>
     <p class="lede" style="max-width:60ch; margin-bottom:22px;">Novos lugares entram aqui à medida que forem confirmados.</p>
+    ${cats.length > 1 ? `
+    <div class="chip-row" id="catChips" data-alvo=".lugar-card" role="group" aria-label="Filtrar por categoria" style="margin-bottom:20px;">
+      <button class="chip active" data-cat="" aria-pressed="true">Todos</button>
+      ${cats.map(c=>`<button class="chip" data-cat="${c}" aria-pressed="false">${c}</button>`).join("")}
+    </div>` : ""}
     ${lugares.length
-      ? `<div class="grid grid-3">${lugares.map(lugarCard).join("")}</div>`
+      ? `<div class="grid grid-3" id="lugaresGrid">${lugares.map(lugarCard).join("")}</div>`
       : `<div class="empty-state">${svgIcon('empty')}<h3>Nenhum lugar cadastrado ainda.</h3></div>`}
   </section>`;
 }
@@ -166,8 +172,8 @@ function viewImaruiLugarDetail(ctx){
     <div class="grid grid-2" style="align-items:start;">
       <div class="card reveal detalhe-texto">
         <p class="lede">${l.descricao}</p>
-        <h2 class="card-title">Por que conhecer</h2>
-        <p>${l.importancia}</p>
+        ${l.importancia ? `<h2 class="card-title">Por que conhecer</h2>
+        <p>${l.importancia}</p>` : ""}
         ${l.aviso ? `<div class="aviso-box" role="note"><strong>Antes de visitar</strong><p>${l.aviso}</p></div>` : ""}
         ${temas.length ? `
           <div>
@@ -287,7 +293,7 @@ function bindImarui(){
       if(!b) return;
       $$(".chip", chips).forEach(c=>{ c.classList.remove("active"); c.setAttribute("aria-pressed","false"); });
       b.classList.add("active"); b.setAttribute("aria-pressed","true");
-      $$("#temasGrid .tema-card").forEach(card=>{ card.hidden = !!b.dataset.cat && card.dataset.cat !== b.dataset.cat; });
+      $$(chips.dataset.alvo || "#temasGrid .tema-card").forEach(card=>{ card.hidden = !!b.dataset.cat && card.dataset.cat !== b.dataset.cat; });
     });
   }
 }
