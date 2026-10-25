@@ -120,7 +120,7 @@ function propostaCard(pr){
   return `
   <div class="card reveal" style="padding:0; overflow:hidden;">
     <div style="padding:22px;">
-      <span class="line-badge" style="background:var(--amber-dim); color:var(--amber);">PROPOSTA</span>
+      <span class="line-badge" style="background:var(--amber-dim); color:var(--amber-text);">PROPOSTA</span>
       <h3 style="margin:12px 0 10px;">${pr.nome}</h3>
       <p style="margin:0;">${pr.descricao}</p>
     </div>
