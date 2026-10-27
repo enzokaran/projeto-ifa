@@ -425,6 +425,9 @@ footer{border-top:1px solid var(--line); padding:40px 0 24px; margin-top:20px;}
 .foot-col a{display:block; font-size:.88rem; color:var(--text-dim); margin-bottom:8px;}
 .foot-col a:hover{color:var(--amber-text);}
 .foot-bottom{font-size:.76rem; color:var(--text-faint); margin-top:20px; padding-top:20px; border-top:1px solid var(--line);}
+.foot-aviso{margin-top:16px; max-width:90ch;}
+.foot-aviso h4{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px; font-family:var(--font-mono);}
+.foot-aviso p{font-size:.76rem; line-height:1.6; color:var(--text-faint);}
 
 /* section header row */
 .sec-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:22px; gap:16px; flex-wrap:wrap;}
