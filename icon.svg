@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" rx="22" fill="#16120f"/>
-  <rect x="8" y="8" width="84" height="84" rx="16" fill="#ffffff"/>
-  <text x="50" y="66" font-family="Arial, sans-serif" font-weight="800" font-size="42" fill="#16120f" text-anchor="middle">VI</text>
+  <g transform="translate(50 50) scale(1.27) translate(-32 -32.5)">
+    <polygon points="10,10 23,10 31.2,29 31.2,55" fill="#d2452b"/>
+    <polygon points="54,10 41,10 32.8,29 32.8,55" fill="#e8c07d"/>
+  </g>
 </svg>

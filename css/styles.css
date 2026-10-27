@@ -63,11 +63,10 @@ button{font-family:inherit; cursor:pointer; border:none; background:none; color:
 .topnav-inner{display:flex; align-items:center; justify-content:space-between; height:68px;}
 .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:800; font-size:1.6rem; letter-spacing:.02em;}
 .brand-mark{
-  width:32px; height:32px; border-radius:8px;
-  background:#ffffff;
+  width:32px; height:32px;
   display:flex; align-items:center; justify-content:center;
-  font-family:var(--font-mono); font-weight:700; color:var(--bg); font-size:.85rem;
 }
+.brand-mark svg{width:100%; height:100%; display:block;}
 .brand small{display:block; font-family:var(--font-body); font-weight:500; font-size:.62rem; letter-spacing:.14em; color:var(--text-dim); text-transform:uppercase; margin-top:-4px;}
 .nav-links{display:none; gap:28px; align-items:center;}
 .nav-links a{font-size:.92rem; font-weight:600; color:var(--text-dim); transition:color .2s; padding:6px 2px; position:relative;}
