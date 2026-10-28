@@ -53,7 +53,30 @@ const PAGINAS = [
 ];
 
 function paginaPorRota(rota){ return PAGINAS.find(p => p.rota === rota) || null; }
-const TITULO_SITE = "Vai — Mobilidade de Imaruí";
+const TITULO_SITE = "Vai Imaruí";
+const TITULO_HOME = "Vai Imaruí — Ônibus, horários e cultura em Imaruí/SC";
+const DESC_HOME = "Horários de ônibus e vans, linhas, tarifas e rotas em Imaruí/SC, mais a história, os lugares e a cultura da cidade. Projeto educacional gratuito do IFA.";
+// Descrição (meta description) de cada página — atualizada a cada troca de rota
+const DESCRICOES = {
+  "/transporte": "Transporte em Imaruí/SC: linhas de ônibus e vans, horários, rotas, tarifas e avisos em um só lugar.",
+  "/linhas": "Todas as linhas de ônibus e vans de Imaruí/SC, com valor, dias de operação, itinerário e mapa.",
+  "/horarios": "Horários de ônibus e vans em Imaruí/SC: saídas de hoje até domingo, para todas as linhas.",
+  "/rotas": "Planeje sua viagem em Imaruí/SC: informe origem e destino e veja quais linhas de ônibus atendem.",
+  "/tarifas": "Tarifas do transporte em Imaruí/SC: valor por linha, meia-passagem, gratuidades e formas de pagamento.",
+  "/avisos": "Avisos do transporte em Imaruí/SC: alterações de itinerário, interrupções e comunicados.",
+  "/propostas": "Propostas de novas linhas de ônibus em Imaruí/SC, ainda em estudo.",
+  "/visitante": "Visitando Imaruí/SC? Veja como chegar ao centro, à saúde, aos serviços e ao turismo de ônibus.",
+  "/imarui": "Conheça Imaruí/SC: história, lugares, cultura e tradições da cidade, e como chegar até eles.",
+  "/imarui/lugares": "Lugares para conhecer em Imaruí/SC e como chegar até eles de carro, a pé ou de transporte público.",
+  "/imarui/cultura": "História e cultura de Imaruí/SC: dos povos originários aos açorianos, pescadores, festas e tradições de hoje.",
+  "/sobre": "Sobre o Vai Imaruí: projeto educacional independente, feito por estudantes do IFA, sem fins lucrativos.",
+  "/cidade": "Mobilidade em Imaruí/SC: como funciona o transporte na cidade e na região."
+};
+function atualizarMeta(descricao){
+  let m = document.querySelector('meta[name="description"]');
+  if(!m){ m = document.createElement("meta"); m.name = "description"; document.head.appendChild(m); }
+  m.content = descricao;
+}
 
 /* ---------- construção de menus a partir da configuração ---------- */
 function montarNavegacao(){
@@ -127,7 +150,18 @@ function render(){
   const sub = pg && !pg.hub ? subnavHtml(pg, rotaAtual) : "";
   app.innerHTML = sub + html;
 
-  document.title = titulo ? `${titulo} — ${TITULO_SITE}` : TITULO_SITE;
+  document.title = titulo ? `${titulo} — ${TITULO_SITE}` : TITULO_HOME;
+  let desc = DESC_HOME;
+  if(lugarMatch && IMARUI && lugarById(ctx.id)){
+    const lg = lugarById(ctx.id);
+    desc = `${lg.nome} em Imaruí/SC: ${lg.descricao}`.slice(0,155);
+  }else if(linhaMatch && linhaById(ctx.id)){
+    const l = linhaById(ctx.id);
+    desc = `Linha ${l.numero}: ${l.origem} → ${l.destino}. Horários, valor, itinerário e mapa do ônibus em Imaruí/SC.`;
+  }else if(pg && DESCRICOES[pg.rota]){
+    desc = DESCRICOES[pg.rota];
+  }
+  atualizarMeta(desc);
   window.scrollTo({ top:0, behavior:"instant" });
   if(!primeiraRenderizacao) app.focus({ preventScroll:true });
   primeiraRenderizacao = false;
