@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://projeto-ifa.vercel.app/sitemap.xml
+Sitemap: https://vai-imarui.vercel.app/sitemap.xml
